@@ -1,21 +1,53 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <app-toast
+    v-if="responseData"
+    :type="responseData.status"
+    :message="responseData.message"
+    @close="close"
+  />
+  <div class="flex flex-col justify-center">
+    <div class="container mx-auto">
+      <div class="flex justify-center items-center min-h-screen">
+        <div
+          class="p-5 w-full z-10 bg-white lg:w-1/2 overflow-hidden rounded-lg shadow-lg ring-1 ring-gray-300 ring-inset"
+        >
+          <h1 class="pb-3">{{ $t("requst form") }}</h1>
+          <form class="space-y-8" @submit.prevent="onSubmit">
+            <app-input
+              v-model.trim="name"
+              :is-active-focus="isActiveFocus"
+              label="name"
+              name="name"
+              :error-message="errors.name"
+            />
+            <app-input
+              v-model.trim="email"
+              label="email"
+              type="email"
+              name="email"
+              :error-message="errors.email"
+            />
+            <app-textarea
+              v-model="message"
+              label="message"
+              name="message"
+              :error-message="errors.message"
+            />
+            <app-button :is-button-loading="isButtonLoading">{{
+              $t("send")
+            }}</app-button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<script>
+import { useRequest } from "@/use/request";
+export default {
+  name: "App",
+  setup() {
+    return { ...useRequest() };
+  },
+};
+</script>
