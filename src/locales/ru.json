@@ -1,3 +1,15 @@
 {
-
+  "requst form": "Форма заявки",
+  "name": "Имя",
+  "message": "Текст сообщения",
+  "email": "Email",
+  "required": "Поле \"{name}\" обязательно к заполнению.",
+  "min": "Поле \"{name}\" должно быть не менее {min} символов.",
+  "valid email": "Поле \"Email\" должно содержать правильный почтовый адрес.",
+  "send": "Отправить",
+  "loading": "Идет загрузка ...",
+  "alert label success": "Успех!",
+  "alert label error": "Ошибка!",
+  "alert label info": "Информация!",
+  "alert label warning": "Предупреждение!"
 }
